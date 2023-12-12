@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArrayName, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ReservationService } from '../reservation/reservation.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Reservation } from '../models/reservation';
 
 @Component({
   selector: 'app-reservation-form',
@@ -8,7 +11,9 @@ import { FormArrayName, FormBuilder, FormControl, FormGroup, Validators } from '
 })
 export class ReservationFormComponent implements OnInit {
   loginForm: FormGroup = new FormGroup ({});
-  constructor (private formBuilder : FormBuilder)
+  constructor (private formBuilder : FormBuilder, private reservationService : ReservationService,
+    private router : Router,
+    private activatedRoute: ActivatedRoute)
   {
 
   }
@@ -22,14 +27,34 @@ export class ReservationFormComponent implements OnInit {
 
 
     })
+    let id = this.activatedRoute.snapshot.paramMap.get('id')
+    if(id) {
+      let reservation = this.reservationService.getReservationById(id)
+      if(reservation) {
+        this.loginForm.patchValue(reservation)
+      }
+     
+    }
   }
   onSubmit()
   {
    if (this.loginForm.valid)
-   {
-      console.log(this.loginForm.value);
+   { let reservation : Reservation = this.loginForm.value;
+    let id = reservation.id
+   if(id) { 
+    
+     this.reservationService.updateReservation(id ,reservation)
+    
+   }else {
+    
+    this.reservationService.addReservation(reservation)
+
 
    }
+      this.router.navigate(["/list"]);
+
+   }
+   
 
 
 

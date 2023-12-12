@@ -14,6 +14,9 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     RouterModule
     
+  ],
+  exports : [
+    HomeComponent //allow other module to use component
   ]
 })
 export class HomeModule { }

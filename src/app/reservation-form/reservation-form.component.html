@@ -1,12 +1,11 @@
 
-    
+<app-home></app-home>
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
    <div> <label for="checkindate">Check-in Date</label>
     <input class="form-control" type="date" id="checkindate" formControlName="checkInDate">
     <div *ngIf="loginForm.get('checkInDate')?.invalid && loginForm.get('checkInDate')?.touched"> Check-in Date is required</div>
 </div>
-   <div> <label for="checkindate">Check-in Date</label>
-    <input class="form-control" type="date" id="checkindate" formControlName="checkInDate"></div>
+
    <div> <label for="checkoutdate">Check-out Date</label>
     <input class="form-control" type="date" id="checkoutdate" formControlName="checkOutDate"></div>
    <div> <label for="guestname">Guest Name </label>
