@@ -1,23 +1,36 @@
 
 <app-home></app-home>
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-   <div> <label for="checkindate">Check-in Date</label>
+  <div class="row mb-3">
+  
+  <div class="col">  <label class="form-label" for="checkindate">Check-in Date</label>
     <input class="form-control" type="date" id="checkindate" formControlName="checkInDate">
     <div *ngIf="loginForm.get('checkInDate')?.invalid && loginForm.get('checkInDate')?.touched"> Check-in Date is required</div>
 </div>
+  
 
-   <div> <label for="checkoutdate">Check-out Date</label>
-    <input class="form-control" type="date" id="checkoutdate" formControlName="checkOutDate"></div>
-   <div> <label for="guestname">Guest Name </label>
-    <input class="form-control" type="text" id="guestname" formControlName="guestName"></div>
-   <div><label for="checkoutdate">Guest Email </label>
-    <input class="form-control" type="email" id="checkoutdate" formControlName="guestEmail"></div>
-
-<div><label for="roomnumber">Room Number </label>
-    <input class="form-control" type="number" id="roomnumber" formControlName="roomNumber"></div>
+    <div class="col"> <label class="form-label" for="checkoutdate">Check-out Date</label>
+      <input class="form-control" type="date" id="checkoutdate" formControlName="checkOutDate"></div>
    
   
-  <button type="submit" [disabled]="loginForm.invalid"> Add</button>
+
+  </div>
+  <div class="row mb-3">
+    
+    <div class="col" > 
+      <label class="form-label" for="guestname">Guest Name </label>
+      <input class="form-control" type="text" id="guestname" formControlName="guestName"></div>
+     <div class="col"><label class="form-label" for="email">Guest Email </label>
+      <input class="form-control" type="email" id="email" formControlName="guestEmail"></div>
+  </div>
+ 
+<div class="row mb-3"> 
+  <div class="col-3"><label class="form-label" for="roomnumber">Room Number </label>
+  <input class="form-control" type="number" id="roomnumber" formControlName="roomNumber"></div></div>
+
+   
+  
+  <button class="btn btn-primary" type="submit" [disabled]="loginForm.invalid"> Add</button>
 
 
 
